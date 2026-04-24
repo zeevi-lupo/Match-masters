@@ -1,15 +1,21 @@
 // ==========================================
 // 1. PENGATURAN LINK MYLEAD & PARAMETER ML_SUB1
 // ==========================================
-
 const urlParams = new URLSearchParams(window.location.search);
 const mlSub1 = urlParams.get('ml_sub1');
 
-// Link asli bawaan MyLead Anda
+// Masukkan link MyLead terbaru Anda di sini (sesuai gambar)
 let myLeadLink = "https://bestlocker.eu/iframe/cdcc3fb2-2137-11f1-a5cd-4e5c1971bddc";
 
 if (mlSub1) {
-    myLeadLink = myLeadLink + "&ml_sub1=" + mlSub1;
+    // Logika pintar: Cek apakah link sudah mengandung tanda tanya (?)
+    if (myLeadLink.includes("?")) {
+        // Jika sudah ada, sambung dengan "&"
+        myLeadLink = myLeadLink + "&ml_sub1=" + mlSub1;
+    } else {
+        // Jika belum ada (seperti link locker baru Anda), gunakan "?"
+        myLeadLink = myLeadLink + "?ml_sub1=" + mlSub1;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
