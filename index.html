@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Masters generator</title>
+    <!-- Memanggil Font dan Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Memanggil file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-step1">
+
+    <div class="top-bar">
+        <div class="server-status">
+            <div><span class="status-dot"></span><span class="online-text">ONLINE</span></div>
+            <span class="user-count" id="userCount">Users: 4,285</span>
+        </div>
+        <div class="game-logo-small">
+            <img src="https://i.imgur.com/B0e8qPG.jpeg" alt="Logo">
+        </div>
+    </div>
+
+    <div class="container">
+
+<!-- STEP 1: LOGIN -->
+        <div id="step1" class="step-content active">
+            <div class="profile-pic-container">
+                <img src="https://i.imgur.com/B0e8qPG.jpeg" alt="Profile">
+            </div>
+
+            <h2>Connect Account</h2>
+            
+            <div class="input-group">
+                <input type="text" id="usernameInput" placeholder="Enter Username/ID">
+            </div>
+
+            <div class="device-selector">
+                <div class="device-btn selected" onclick="selectDevice(this, 'android')">
+                    <i class="fab fa-android" style="color: #a4c639;"></i>
+                </div>
+                <div class="device-btn" onclick="selectDevice(this, 'ios')">
+                    <i class="fab fa-apple" style="color: #fff;"></i>
+                </div>
+            </div>
+
+            <button class="cta-btn pulse-anim" onclick="processStep1()">CONNECT</button>
+
+            <div class="loading-container" id="loading1" style="display:none; margin-top:15px;">
+                <div class="search-anim" id="searchIcon"> <i class="fas fa-search"></i> </div>
+                <div class="success-icon" id="successIcon"> <i class="fas fa-check-circle"></i> </div>
+                <div style="margin-bottom:5px; font-size:0.9rem; color:#ffcc00;" id="loadingText1">Connecting...</div>
+                <div class="progress-bar-bg" id="barContainer1"> <div class="progress-bar-fill" id="progressBar1"></div> </div>
+            </div>
+
+            <!-- KOMENTAR OTOMATIS (Akan diisi oleh script.js) -->
+            <div class="comments-section" id="commentArea">
+                <div class="comments-header">
+                    <i class="fas fa-comments"></i> Recent Activity
+                </div>
+                <div class="comment-list" id="dynamicComments">
+                    <!-- 2 Komentar acak akan muncul di sini -->
+                </div>
+            </div>
+            
+        </div>
+        <!-- STEP 2: SHOP -->
+        <div id="step2" class="step-content">
+            <div class="shop-header">
+                NEW DEALS IN: <span id="dealCountdown" style="color:var(--accent-yellow)">14h 28m 10s</span>
+            </div>
+
+            <div class="shop-scroll-area">
+                <div class="banner-slider-container">
+                    <div class="banner-card">
+                        <div class="banner-image-wrapper"> <img src="https://i.imgur.com/D7QFS0E.jpeg" class="banner-img-full" alt="Promo 1"> </div>
+                        <button class="banner-btn-full" onclick="startClaimProcess('Power Pack')">CLAIM NOW</button>
+                    </div>
+                    <div class="banner-card">
+                        <div class="banner-image-wrapper"> <img src="https://i.imgur.com/yKKwW5H.jpeg" class="banner-img-full" alt="Promo 2"> </div>
+                        <button class="banner-btn-full" onclick="startClaimProcess('Legendary Sticker')">CLAIM NOW</button>
+                    </div>
+                    <div class="banner-card">
+                         <div class="banner-image-wrapper"> <img src="https://i.imgur.com/oJ77saz.jpeg" class="banner-img-full" alt="Promo 3"> </div>
+                        <button class="banner-btn-full" onclick="startClaimProcess('VIP Bundle')">CLAIM NOW</button>
+                    </div>
+                </div>
+
+                <div class="section-title">ITEM</div>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">Gold Booster</div>
+                            <img src="https://i.imgur.com/tGjiCNN.png?text=Gold Booster" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('Gold Booster')">CLAIM</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="badge">POPULAR</div>
+                        <div class="item-content">
+                            <div class="item-amount" style="color:#ffcc00">Diamond Booster</div>
+                            <img src="https://i.imgur.com/YIp5Mgl.png?text=Diamond Booster" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('Diamond Booster')">CLAIM</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">Silver Booster</div>
+                            <img src="https://i.imgur.com/NbSANUM.png?text=Silver Booster" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('Silver Booster')">CLAIM</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">3,000</div>
+                            <img src="https://i.imgur.com/Op3SOah.png?text=Coins" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('3000 Coins')">CLAIM</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">5,250</div>
+                            <img src="https://i.imgur.com/ysJKYSO.png?text=Coins" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('5250 Coins')">CLAIM</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="badge">BEST</div>
+                        <div class="item-content">
+                            <div class="item-amount" style="color:#ffcc00">15,000</div>
+                            <img src="https://i.imgur.com/LfdrNLW.png?text=Coins" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('15000 Coins')">CLAIM</button>
+                    </div>
+                </div>
+
+                <div class="section-title">BOOSTERS</div>
+                <div class="shop-grid lucky-grid">
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">Legendary Booster</div>
+                            <img src="https://i.imgur.com/v4Ijg8u.png?text=Legendary Booster" class="item-img">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('Legendary Booster')">Claim</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-content">
+                            <div class="item-amount">Special Booster</div>
+                            <img src="https://i.imgur.com/GJnOgOl.png?text=Special Booster" class="item-img" alt="Special Booster">
+                        </div>
+                        <button class="price-btn" onclick="startClaimProcess('Special Booster')">Claim</button>
+                    </div>
+                </div>
+                <div style="height: 60px;"></div> 
+            </div>
+        </div> <!-- AKHIR DARI STEP 2 -->
+
+        <!-- STEP LOADING (Generating) -->
+        <div id="step-loading" class="step-content">
+            <div class="gen-box">
+                <div class="gen-ring-1"></div>
+                <div class="gen-ring-2"></div>
+            </div>
+            <h2 style="font-size: 1.2rem;">GENERATING...</h2>
+            <div class="console-text" id="consoleText">Initializing...</div>
+            <div class="progress-bar-bg" style="width: 100%;">
+                <div class="progress-bar-fill" id="progressBarGen"></div>
+            </div>
+        </div>
+
+        <!-- STEP 3: VERIFICATION -->
+        <div id="step3" class="step-content">
+            <div class="profile-pic-container" style="border-color: #ff0055;">
+                <i class="fas fa-shield-alt fa-3x" style="color: #333; line-height: 80px;"></i>
+            </div>
+            <h2>Verification Required</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
+                Hi <span id="displayUsername" style="color: #fff; font-weight: 800; text-transform: uppercase;">User</span>!<br><br>
+                To complete your claim of <span id="selectedItemName" style="color: var(--accent-yellow); font-weight: bold;">Reward</span>, please verify you are human.
+            </p>
+            
+            <a id="lockerLink" href="#" class="cta-btn pulse-anim" onclick="lacakKlikCPA(event, this.href)">
+                VERIFY NOW
+            </a>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <a href="#">Terms of Service</a> <span>|</span> <a href="#">Privacy Policy</a>
+    </div>
+
+    <!-- FITUR SOCIAL PROOF (LIVE NOTIFICATION) -->
+    <div id="live-notification" class="live-noti-container">
+        <div class="noti-img">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="noti-content">
+            <div class="noti-text">
+                <span id="noti-name" class="noti-name">Oliver</span> 
+                <span id="noti-action">just unlocked</span> 
+                <span id="noti-item" class="noti-item">Diamond Booster</span>
+            </div>
+            <div class="noti-time" id="noti-time">just now</div>
+        </div>
+    </div>
+
+    <!-- Memanggil file JavaScript eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
